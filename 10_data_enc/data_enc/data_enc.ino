@@ -16,7 +16,7 @@ void setup() {
   nh.advertise(pub);
   pinMode(ENCA, INPUT_PULLUP);
   pinMode(ENCB, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(ENCB), readEncoder, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCA), readEncoder, RISING);
   TCCR1B = TCCR1B & 0b11111000 | 1;
 
 }
@@ -33,7 +33,7 @@ void loop() {
 }
 
 void readEncoder() {
-  int b = digitalRead(ENCA);
+  int b = digitalRead(ENCB);
   if (b > 0) {
     encoderPos++;
   }
